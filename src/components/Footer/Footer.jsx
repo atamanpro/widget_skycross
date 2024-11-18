@@ -21,41 +21,48 @@ const Footer = ({ isNavClosed }) => {
   const isTyping = message.length > 0;
 
   return (
-    <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")}>
-  <div className="inputWrapper">
-    {/* Иконка прикрепления */}
-    <Image className="clip-icon" w={24} h={24} src={clipButton} />
-    <Textarea
-      classNames={{ input: "input" }}
-      style={{ width: '100%' }}
-      placeholder="Сообщение"
-      autosize
-      variant="unstyled"
-      radius="xl"
-      size="lg"
-      minRows={1}
-      maxRows={8}
-      value={message}
-      onChange={(e) => setMessage(e.target.value)}
-      onKeyPress={(e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          handleSend();
-        }
-      }}
-    />
-    {/* Иконка отправки сообщения */}
-    <ActionIcon
-      className={`sendIcon ${isTyping ? "sendIconActive" : ""}`}
-      variant="transparent"
-      onClick={handleSend}
-      w={48}
-      h={48}
+    <Box
+      component="footer"
+      className={clsx("footer", isNavClosed && "noLeftPadding")}
     >
-      <Image className={isTyping ? "sendIconActive" : ""} w={32} src={sendButton} />
-    </ActionIcon>
-  </div>
-</Box>
+      <div className="inputWrapper">
+        {/* Иконка прикрепления */}
+        <Image className="clip-icon" w={24} h={24} src={clipButton} />
+        <Textarea
+          classNames={{ input: "input" }}
+          style={{ width: "100%" }}
+          placeholder="Сообщение"
+          autosize
+          variant="unstyled"
+          radius="xl"
+          size="lg"
+          minRows={1}
+          maxRows={8}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
+        />
+        {/* Иконка отправки сообщения */}
+        <ActionIcon
+          className={`sendIcon ${isTyping ? "sendIconActive" : ""}`}
+          variant="transparent"
+          onClick={handleSend}
+          w={48}
+          h={48}
+        >
+          <Image
+            className={isTyping ? "sendIconActive" : ""}
+            w={32}
+            src={sendButton}
+          />
+        </ActionIcon>
+      </div>
+    </Box>
   );
 };
 
