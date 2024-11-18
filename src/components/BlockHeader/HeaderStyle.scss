@@ -1,0 +1,21 @@
+.BoxHeader {
+     width: 100% -10px;
+     height: 64px;
+     background-color: #018BD3;
+     padding: 0 10px;
+     margin: 0;
+     display: flex;
+     justify-content: space-between;
+}
+
+.boxArrowHeader {
+     width: 47px;
+     background-color: none;
+     padding-left: 10px;
+}
+
+.headerText {
+     font-size: 18px;
+     font-weight: 600;
+     color: #fff;
+}

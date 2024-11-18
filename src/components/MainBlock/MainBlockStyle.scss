@@ -1,0 +1,62 @@
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.avatarStatusBlock{
+     width: 64px;
+     border-radius: 50px;
+}
+
+.statusText{
+     font-size: 16px;
+     font-weight: 600;
+     color: #000;
+     margin-top: 7px;
+}
+
+.textStatusBottom {
+     font-size: 14px;
+     font-weight: 400;
+     color: #737373;
+     margin-top: -6px;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  max-width: 70%;
+  align-self: flex-start;
+}
+
+.BoxWithTextBot{
+     width: auto;
+     border-radius: 10px;
+     background-color: #f2f2f2;
+     padding: 15px;
+}
+
+.bot-message {
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+}
+
+.bot-message-avatar {
+  margin: 0 8px;
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%; 
+}
+
+.welcomeTextBot{
+     font-size: 14px;
+     font-weight: 400;
+     color: #000;
+     margin: 0;
+}
