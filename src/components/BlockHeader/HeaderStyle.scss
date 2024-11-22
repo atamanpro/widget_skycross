@@ -1,12 +1,15 @@
 .BoxHeader {
-     width: 100% -10px;
-     height: 64px;
-     background-color: #018BD3;
+     position: fixed; 
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 64px; 
+     background-color: #018bd3;
      padding: 0 10px;
-     margin: 0;
      display: flex;
      justify-content: space-between;
-}
+     z-index: 10; 
+   }
 
 .boxArrowHeader {
      width: 47px;
@@ -18,4 +21,8 @@
      font-size: 18px;
      font-weight: 600;
      color: #fff;
+}
+
+.logoHeader {
+     margin-right: 20px;
 }

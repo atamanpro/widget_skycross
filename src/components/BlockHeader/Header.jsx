@@ -12,7 +12,7 @@ const Header = () => {
          <Text className='headerText'>
            Виктория
          </Text>
-         <Image src={logo} alt="Logo" width={60} height={43} />
+         <Image src={logo} alt="Logo" width={60} height={43} className='logoHeader' />
        </Flex>
      );
    };
