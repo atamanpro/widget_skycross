@@ -11,31 +11,44 @@ import attachFoto from "../../assets/AttachFoto.svg";
 import cameraIcon from "../../assets/Camera.svg";
 import addFileIcon from "../../assets/AddFile.svg";
 import "./FooterStyle.scss";
+import { sendMessageToServer } from "../../services/chatService";
 
 const Footer = ({ isNavClosed }) => {
   const [message, setMessage] = useState("");
   const [isInputActive, setIsInputActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [attachedImages, setAttachedImages] = useState([]); // Список прикрепленных изображений
+  const [attachedImages, setAttachedImages] = useState([]);
   const modalRef = useRef(null);
   const clipRef = useRef(null);
   const dispatch = useDispatch();
   const containerRef = useRef(null);
 
-
-
-  const handleSend = () => {
+  const handleSend = async () => {
     if (message.trim() || attachedImages.length > 0) {
-      dispatch(
-          addMessage({
-            id: Date.now(),
-            sender: "user",
-            text: message,
-            images: attachedImages, // Отправляем изображения
-          })
-      );
+      const userMessage = {
+        id: Date.now(),
+        sender: "user",
+        text: message,
+        images: attachedImages,
+      };
+
+      dispatch(addMessage(userMessage));
       setMessage("");
-      setAttachedImages([]); // Очищаем изображения после отправки
+      setAttachedImages([]);
+
+      try {
+        const serverResponse = await sendMessageToServer(message, attachedImages);
+        console.log(serverResponse);
+
+        const botMessage = {
+          id: Date.now() + 1,
+          sender: "bot",
+          text: serverResponse.content.message || "Ответ от сервера отсутствует"
+        };
+        dispatch(addMessage(botMessage));
+      } catch (error) {
+        console.error("Ошибка при отправке сообщения:", error);
+      }
     } else {
       console.error("Сообщение пустое");
     }
@@ -76,7 +89,6 @@ const Footer = ({ isNavClosed }) => {
     if (containerRef.current) {
       const container = containerRef.current;
 
-      // Проверяем необходимость прокрутки
       if (container.scrollWidth <= container.clientWidth) {
         container.style.overflowX = "hidden";
       } else {
@@ -86,10 +98,7 @@ const Footer = ({ isNavClosed }) => {
   }, [attachedImages]);
 
   return (
-      <Box
-          component="footer"
-          className={clsx("footer", isNavClosed && "noLeftPadding")}
-      >
+      <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")}>
         <div className={clsx("inputFile", attachedImages.length > 0 && "inputWithAttachments")}>
           {attachedImages.length > 0 && (
               <div className="attached-images-container" ref={containerRef}>
@@ -115,11 +124,11 @@ const Footer = ({ isNavClosed }) => {
                 src={clipButton}
                 onClick={handleToggleModal}
                 ref={clipRef}
-                style={{cursor: "pointer"}}
+                style={{ cursor: "pointer" }}
             />
             <Textarea
-                classNames={{input: "input"}}
-                style={{width: "100%"}}
+                classNames={{ input: "input" }}
+                style={{ width: "100%" }}
                 placeholder="Сообщение"
                 autosize
                 variant="unstyled"
@@ -152,33 +161,33 @@ const Footer = ({ isNavClosed }) => {
               />
             </ActionIcon>
           </div>
-         </div>
+        </div>
 
-          {isModalOpen && (
-              <div className="modal-content" ref={modalRef}>
-                <label className="modal-button">
-                  Прикрепить фото
-                  <input
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      style={{display: "none"}}
-                      onChange={handleAttachImage}
-                  />
-                  <img src={attachFoto} className="button-icon" alt="Attach Foto"/>
-                </label>
-                <Button fullWidth variant="subtle" className="modal-button">
-                  Сделать снимок
-                  <img src={cameraIcon} className="button-icon" alt="Camera"/>
-                </Button>
-                <Button fullWidth variant="subtle" className="modal-button">
-                  Прикрепить файлы
-                  <img src={addFileIcon} className="button-icon" alt="Add File"/>
-                </Button>
-              </div>
-          )}
+        {isModalOpen && (
+            <div className="modal-content" ref={modalRef}>
+              <label className="modal-button">
+                Прикрепить фото
+                <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    style={{ display: "none" }}
+                    onChange={handleAttachImage}
+                />
+                <img src={attachFoto} className="button-icon" alt="Attach Foto" />
+              </label>
+              <Button fullWidth variant="subtle" className="modal-button">
+                Сделать снимок
+                <img src={cameraIcon} className="button-icon" alt="Camera" />
+              </Button>
+              <Button fullWidth variant="subtle" className="modal-button">
+                Прикрепить файлы
+                <img src={addFileIcon} className="button-icon" alt="Add File" />
+              </Button>
+            </div>
+        )}
       </Box>
-);
+  );
 };
 
 Footer.propTypes = {
