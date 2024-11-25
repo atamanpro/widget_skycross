@@ -9,7 +9,7 @@
   bottom: 0;
   left: 0;
   width: 98%;
-  z-index: 10;
+  z-index: 100;
   margin: 0 1% 5px 1%;
 }
 
@@ -81,6 +81,10 @@ border: none;
   background-color: #ffffff;
   position: absolute;
   width: 170px;
+  position: fixed; 
+  bottom: 65px; 
+  left: 20px; 
+  z-index: 200;
 }
 
 .modal-button {
