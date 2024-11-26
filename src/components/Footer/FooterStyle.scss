@@ -1,16 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 .footer {
-  // background-color: #f9f9f9;
   padding: 5px 0;
-  // border-top: 1px solid #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  // position: fixed;
+  // bottom: -5%;
+  // left: 0;
   width: 98%;
   z-index: 100;
   margin: 0 1% 5px 1%;
+}
+
+.inputFile {
+  width: 100%;
+  background-color: #f3f3f3;
+  align-items: flex-start;
+  border-radius: 30px;
+  padding: 5px 0;
+  box-sizing: border-box;
 }
 
 .inputWrapper {
@@ -32,6 +43,8 @@
   padding-right: 12px;
   color: #000;
   font-size: 16px;
+  font-family: "Inter";
+  font-weight: 400;
   line-height: 1.5;
   border: none;
   outline: none;
@@ -82,7 +95,7 @@ border: none;
   position: absolute;
   width: 170px;
   position: fixed; 
-  bottom: 65px; 
+  bottom: 0; 
   left: 20px; 
   z-index: 200;
 }
@@ -116,4 +129,56 @@ border: none;
   transform: translateY(-50%); 
   width: 20px;
   height: 20px;
+}
+
+.attached-images-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 5px 0;
+  max-width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.attached-image-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+.attached-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+.remove-image-button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #808080;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: 14px;
+  width: 14px;
+  font-size: 10px;
+  line-height: 1;
+  color: #fff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  &:active {
+    background: #505050; /* Ещё темнее при нажатии */
+  }
+}
+.inputWithAttachments {
+  flex-direction: column;
+  border-radius: 10px;
 }

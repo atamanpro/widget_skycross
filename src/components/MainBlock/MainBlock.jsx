@@ -1,4 +1,4 @@
-import { Avatar, Text, Box, Paper, Image } from "@mantine/core";
+import { Avatar, Text, Box, Paper, Image as MantineImage } from "@mantine/core";
 import { useSelector } from "react-redux";
 import consultantPhoto from "../../assets/logoConsultant.svg";
 import "./MainBlockStyle.scss";
@@ -22,7 +22,7 @@ const MainBlock = () => {
               className={msg.sender === "bot" ? "bot-message" : "user-message"}
             >
               {msg.sender === "bot" && (
-                <Image
+                <MantineImage
                   src={consultantPhoto}
                   className="bot-message-avatar"
                   width={40}
@@ -37,6 +37,22 @@ const MainBlock = () => {
                 <Text className={msg.sender === "bot" ? "welcomeTextBot" : ""}>
                   {msg.text}
                 </Text>
+
+                {/* Изображения сообщения */}
+                {msg.images && msg.images.length > 0 && (
+                  <div className="message-images">
+                    {msg.images.map((image, index) => (
+                      <MantineImage
+                        key={index}
+                        src={image}
+                        alt={`Image ${index + 1}`}
+                        className="attached-image-main"
+                        radius="sm"
+                        withPlaceholder
+                      />
+                    ))}
+                  </div>
+                )}
               </Box>
             </div>
           ))}

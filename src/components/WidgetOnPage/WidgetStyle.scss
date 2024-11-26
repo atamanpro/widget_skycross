@@ -1,0 +1,17 @@
+.widgetWindow {
+     width: 90%; 
+     height: 108%; 
+     display: flex;
+     flex-direction: column; 
+     overflow-y: auto; 
+     background-color: #ffffff; 
+     border-radius: 12px; 
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+     position: fixed; 
+     top: 0; 
+     right: 100px;
+     z-index: 1000; 
+   }
+
+
+   

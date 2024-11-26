@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 .status-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .avatarStatusBlock {
@@ -16,11 +18,14 @@
   font-weight: 600;
   color: #000;
   margin-top: 7px;
+  font-family: "Inter";
+  font-weight: 600;
 }
 
 .textStatusBottom {
   font-size: 14px;
   font-weight: 400;
+  font-family: "Inter";
   color: #737373;
   margin-top: -6px;
 }
@@ -28,11 +33,9 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-//   align-items: center;
   margin-top: 20px;
   max-width: 100%;
   align-self: flex-start;
-  padding-bottom: 57px; 
 }
 
 .BoxWithTextBot {
@@ -80,4 +83,20 @@
   font-size: 14px;
   font-weight: 400;
   color: #000;
+  font-family: "Inter";
+}
+
+.message-images {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.attached-image-main {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
