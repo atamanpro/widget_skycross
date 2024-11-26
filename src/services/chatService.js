@@ -12,12 +12,12 @@ export const sendMessageToServer = async (message, images) => {
         };
 
         const response = await axios.post(
-            "https://skycross-widget.replit.app/consultation",
+            "https://skycross-widget.replit.app/",
             payload,
             { headers: { "Content-Type": "application/json" } }
         );
 
-        return response.data; // Возвращаем ответ от сервера
+        return response.data;
     } catch (error) {
         console.error("Ошибка при отправке сообщения на сервер:", error);
         throw error;

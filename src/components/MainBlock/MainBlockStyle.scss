@@ -90,9 +90,82 @@
 }
 
 .attached-image-main {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.image-collage {
+  display: flex; /* Начальное отображение — flex */
+  gap: 10px;
+  flex-wrap: wrap; /* Изображения будут переноситься на новую строку */
+  justify-content: center;
+  align-items: center;
+
+  /* Для каждого изображения — начальный одинаковый размер */
+  .collage-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.3s ease; /* Анимация для плавного перехода */
+  }
+
+  /* Применяем сетку, если больше одного изображения */
+  &.count-1 {
+    display: flex; /* Одно изображение остаётся flex */
+    justify-content: right;
+
+    .collage-image {
+      width: 200px; /* Одно изображение — на всю ширину */
+      height: 100%;
+    }
+  }
+
+  &.count-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Два изображения одинакового размера */
+    gap: 10px;
+
+    .collage-image {
+      width: 100%; /* Подгоняем под сетку */
+      height: 100%;
+    }
+  }
+
+  &.count-3 {
+    display: grid;
+    grid-template:
+      "b b a"
+      "b b c";
+
+    .collage-image:nth-child(1) {
+      grid-area: a;
+      height: 100%;
+      width: 100%
+    }
+    .collage-image:nth-child(2) {
+      grid-area: b;
+      height: 100%;
+      width: 100%
+    }
+    .collage-image:nth-child(3) {
+      grid-area: c;
+      height: 100%;
+      width: 100%
+    }
+  }
+
+  &.more-than-three {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Для более 3 изображений */
+    gap: 10px;
+
+    .collage-image {
+      width: 100%; /* Все изображения подгоняются под сетку */
+      height: 100%;
+    }
+  }
 }

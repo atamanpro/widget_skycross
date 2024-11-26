@@ -40,19 +40,21 @@ const MainBlock = () => {
                                 </Text>
 
                                 {/* Изображения сообщения */}
-                                {msg.images && msg.images.length > 0 && (
-                                    <div className="message-images">
+                                {msg.images && msg.images.length > 0 && (<div
+                                        className={`image-collage ${msg.images.length > 3 ? 'more-than-three' : `count-${msg.images.length}`}`}
+                                    >
                                         {msg.images.map((image, index) => (
                                             <MantineImage
                                                 key={index}
                                                 src={image}
                                                 alt={`Image ${index + 1}`}
-                                                className="attached-image-main"
+                                                className="collage-image"
                                                 radius="sm"
                                                 withPlaceholder
                                             />
                                         ))}
                                     </div>
+
                                 )}
                             </Box>
                         </div>

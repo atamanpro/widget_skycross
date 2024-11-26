@@ -62,6 +62,7 @@ const Footer = ({ isNavClosed }) => {
     const files = Array.from(event.target.files);
     const imagePreviews = files.map((file) => URL.createObjectURL(file));
     setAttachedImages([...attachedImages, ...imagePreviews]);
+    setIsModalOpen(false);
   };
 
   const handleRemoveImage = (index) => {
