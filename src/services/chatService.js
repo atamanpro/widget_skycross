@@ -12,7 +12,7 @@ export const sendMessageToServer = async (message, images) => {
         };
 
         const response = await axios.post(
-            // "https://skycross-widget.replit.app/consultation",
+            "https://skycross-widget.replit.app/consultation",
             payload,
             { headers: { "Content-Type": "application/json" } }
         );
