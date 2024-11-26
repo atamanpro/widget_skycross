@@ -1,8 +1,8 @@
 .BoxHeader {
-     position: fixed; 
+     // position: fixed; 
      top: 0;
      left: 0;
-     width: 100%;
+     width: auto;
      height: 64px; 
      background-color: #018bd3;
      padding: 0 10px;
@@ -23,6 +23,6 @@
      color: #fff;
 }
 
-.logoHeader {
-     margin-right: 20px;
-}
+// .logoHeader {
+//      margin-right: 20px;
+// }

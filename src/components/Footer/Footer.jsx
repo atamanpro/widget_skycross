@@ -98,97 +98,98 @@ const Footer = ({ isNavClosed }) => {
     }
   }, [attachedImages]);
 
+
   return (
-      <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")}>
-        <div className={clsx("inputFile", attachedImages.length > 0 && "inputWithAttachments")}>
-          {attachedImages.length > 0 && (
-              <div className="attached-images-container" ref={containerRef}>
-                {attachedImages.map((image, index) => (
-                    <div className="attached-image-wrapper" key={index}>
-                      <img src={image} alt={`Attached ${index}`} className="attached-image" />
-                      <button
-                          className="remove-image-button"
-                          onClick={() => handleRemoveImage(index)}
-                      >
-                        &times;
-                      </button>
-                    </div>
-                ))}
-              </div>
-          )}
-
-          <div className="inputWrapper">
-            <Image
-                className="clip-icon"
-                w={24}
-                h={24}
-                src={clipButton}
-                onClick={handleToggleModal}
-                ref={clipRef}
-                style={{ cursor: "pointer" }}
-            />
-            <Textarea
-                classNames={{ input: "input" }}
-                style={{ width: "100%" }}
-                placeholder="Сообщение"
-                autosize
-                variant="unstyled"
-                radius="xl"
-                size="lg"
-                minRows={1}
-                maxRows={8}
-                value={message}
-                onFocus={() => setIsInputActive(true)}
-                onBlur={() => setIsInputActive(false)}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSend();
-                  }
-                }}
-            />
-            <ActionIcon
-                className={`sendIcon ${message.length > 0 || attachedImages.length > 0 ? "sendIconActive" : ""}`}
-                variant="transparent"
-                onClick={handleSend}
-                w={48}
-                h={48}
-            >
-              <Image
-                  className="sendIconImage"
-                  w={32}
-                  src={isInputActive ? sendActive : sendButton}
-              />
-            </ActionIcon>
+    <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")}>
+    <div className={clsx("inputFile", attachedImages.length > 0 && "inputWithAttachments")}>
+      {attachedImages.length > 0 && (
+          <div className="attached-images-container" ref={containerRef}>
+            {attachedImages.map((image, index) => (
+                <div className="attached-image-wrapper" key={index}>
+                  <img src={image} alt={`Attached ${index}`} className="attached-image" />
+                  <button
+                      className="remove-image-button"
+                      onClick={() => handleRemoveImage(index)}
+                  >
+                    &times;
+                  </button>
+                </div>
+            ))}
           </div>
-        </div>
+      )}
 
-        {isModalOpen && (
-            <div className="modal-content" ref={modalRef}>
-              <label className="modal-button">
-                Прикрепить фото
-                <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    style={{ display: "none" }}
-                    onChange={handleAttachImage}
-                />
-                <img src={attachFoto} className="button-icon" alt="Attach Foto" />
-              </label>
-              <Button fullWidth variant="subtle" className="modal-button">
-                Сделать снимок
-                <img src={cameraIcon} className="button-icon" alt="Camera" />
-              </Button>
-              <Button fullWidth variant="subtle" className="modal-button">
-                Прикрепить файлы
-                <img src={addFileIcon} className="button-icon" alt="Add File" />
-              </Button>
-            </div>
-        )}
-      </Box>
-  );
+      <div className="inputWrapper">
+        <Image
+            className="clip-icon"
+            w={24}
+            h={24}
+            src={clipButton}
+            onClick={handleToggleModal}
+            ref={clipRef}
+            style={{ cursor: "pointer" }}
+        />
+        <Textarea
+            classNames={{ input: "input" }}
+            style={{ width: "100%" }}
+            placeholder="Сообщение"
+            autosize
+            variant="unstyled"
+            radius="xl"
+            size="lg"
+            minRows={1}
+            maxRows={8}
+            value={message}
+            onFocus={() => setIsInputActive(true)}
+            onBlur={() => setIsInputActive(false)}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+              }
+            }}
+        />
+        <ActionIcon
+            className={`sendIcon ${message.length > 0 || attachedImages.length > 0 ? "sendIconActive" : ""}`}
+            variant="transparent"
+            onClick={handleSend}
+            w={48}
+            h={48}
+        >
+          <Image
+              className="sendIconImage"
+              w={32}
+              src={isInputActive ? sendActive : sendButton}
+          />
+        </ActionIcon>
+      </div>
+    </div>
+
+    {isModalOpen && (
+        <div className="modal-content" ref={modalRef}>
+          <label className="modal-button">
+            Прикрепить фото
+            <input
+                type="file"
+                accept="image/*"
+                multiple
+                style={{ display: "none" }}
+                onChange={handleAttachImage}
+            />
+            <img src={attachFoto} className="button-icon" alt="Attach Foto" />
+          </label>
+          <Button fullWidth variant="subtle" className="modal-button">
+            Сделать снимок
+            <img src={cameraIcon} className="button-icon" alt="Camera" />
+          </Button>
+          <Button fullWidth variant="subtle" className="modal-button">
+            Прикрепить файлы
+            <img src={addFileIcon} className="button-icon" alt="Add File" />
+          </Button>
+        </div>
+    )}
+  </Box>
+);
 };
 
 Footer.propTypes = {
