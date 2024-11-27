@@ -117,36 +117,35 @@
 }
 
 .image-collage {
-  display: flex; /* Начальное отображение — flex */
+  display: flex;
   gap: 10px;
-  flex-wrap: wrap; /* Изображения будут переноситься на новую строку */
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding-bottom: 12px;
 
-  /* Для каждого изображения — начальный одинаковый размер */
   .collage-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 8px;
-    transition: all 0.3s ease; /* Анимация для плавного перехода */
+    transition: all 0.3s ease;
   }
 
-  /* Применяем сетку, если больше одного изображения */
+
   &.count-1 {
-    display: flex; /* Одно изображение остаётся flex */
+    display: flex;
     justify-content: right;
 
     .collage-image {
-      width: 200px; /* Одно изображение — на всю ширину */
+      width: 200px;
       height: 100%;
     }
   }
 
   &.count-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Два изображения одинакового размера */
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
 
     .collage-image {

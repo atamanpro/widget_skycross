@@ -150,7 +150,9 @@ const Footer = ({ isNavClosed }) => {
             }}
         />
         <ActionIcon
-            className={`sendIcon ${message.length > 0 || attachedImages.length > 0 ? "sendIconActive" : ""}`}
+            className={`sendIcon ${
+                message.length > 0 || attachedImages.length > 0 ? "sendIconActive" : ""
+            }`}
             variant="transparent"
             onClick={handleSend}
             w={48}
@@ -159,7 +161,7 @@ const Footer = ({ isNavClosed }) => {
           <Image
               className="sendIconImage"
               w={32}
-              src={isInputActive ? sendActive : sendButton}
+              src={isInputActive || attachedImages.length > 0 ? sendActive : sendButton}
           />
         </ActionIcon>
       </div>
