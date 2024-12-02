@@ -100,7 +100,7 @@ const Footer = ({ isNavClosed }) => {
 
 
   return (
-    <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")}>
+    <Box component="footer" className={clsx("footer", isNavClosed && "noLeftPadding")} >
     <div className={clsx("inputFile", attachedImages.length > 0 && "inputWithAttachments")}>
       {attachedImages.length > 0 && (
           <div className="attached-images-container" ref={containerRef}>
@@ -166,6 +166,8 @@ const Footer = ({ isNavClosed }) => {
         </ActionIcon>
       </div>
     </div>
+
+    <span className="inputBottomText">Powered by Utlik.</span>
 
     {isModalOpen && (
         <div className="modal-content" ref={modalRef}>
