@@ -1,13 +1,14 @@
 .BoxHeader {
      // position: fixed; 
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
      top: 0;
      left: 0;
      width: auto;
      height: 64px; 
      background-color: #018bd3;
      padding: 0 10px;
-     display: flex;
-     justify-content: space-between;
      z-index: 10; 
    }
 
@@ -22,6 +23,11 @@
      font-weight: 600;
      color: #fff;
 }
+
+.logoHeader {
+     width: 60px;
+     height: 43px;
+   }
 
 // .logoHeader {
 //      margin-right: 20px;
