@@ -1,4 +1,3 @@
-import { ActionIcon, Box, Image, Textarea, Button } from "@mantine/core";
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -73,6 +72,13 @@ const Footer = ({ isNavClosed }) => {
     setAttachedImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleTextareaResize = (event) => {
+    const textarea = event.target;
+    textarea.style.height = "auto"; // Сбрасываем высоту для пересчёта
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 190)}px`; // Устанавливаем высоту
+  };
+  
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -103,10 +109,7 @@ const Footer = ({ isNavClosed }) => {
   }, [attachedImages]);
 
   return (
-    <Box
-      component="footer"
-      className={clsx("footer", isNavClosed && "noLeftPadding")}
-    >
+    <footer className={clsx("footer", isNavClosed && "noLeftPadding")}>
       <div
         className={clsx(
           "inputFile",
@@ -134,29 +137,35 @@ const Footer = ({ isNavClosed }) => {
         )}
 
         <div className="inputWrapper">
-          <Image
+          <img
             className="clip-icon"
-            w={24}
-            h={24}
             src={clipButton}
+            alt="Attach"
             onClick={handleToggleModal}
             ref={clipRef}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", width: "24px", height: "24px" }}
           />
-          <Textarea
-            classNames={{ input: "input" }}
-            style={{ width: "100%" }}
+          <textarea
+            className="input"
             placeholder="Сообщение"
-            autosize
-            variant="unstyled"
-            radius="xl"
-            size="lg"
-            minRows={1}
-            maxRows={8}
+            rows="1"
+            style={{
+              height: "auto",
+              width: "100%",
+              border: "none",
+              outline: "none",
+              resize: "none",
+              // padding: "10px",
+              fontSize: "16px",
+            }}
             value={message}
             onFocus={() => setIsInputActive(true)}
             onBlur={() => setIsInputActive(false)}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              handleTextareaResize(e);
+            }}
+            onInput={handleTextareaResize}
             onKeyPress={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -164,27 +173,32 @@ const Footer = ({ isNavClosed }) => {
               }
             }}
           />
-          <ActionIcon
+          <button
             className={`sendIcon ${
               message.length > 0 || attachedImages.length > 0
                 ? "sendIconActive"
                 : ""
             }`}
-            variant="transparent"
             onClick={handleSend}
-            w={48}
-            h={48}
+            style={{
+              width: "48px",
+              height: "48px",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
-            <Image
+            <img
               className="sendIconImage"
-              w={32}
               src={
                 isInputActive || attachedImages.length > 0
                   ? sendActive
                   : sendButton
               }
+              alt="Send"
+              style={{ width: "32px", height: "32px" }}
             />
-          </ActionIcon>
+          </button>
         </div>
       </div>
 
@@ -212,17 +226,17 @@ const Footer = ({ isNavClosed }) => {
             />
             <img src={attachFoto} className="button-icon" alt="Attach Foto" />
           </label>
-          <Button fullWidth variant="subtle" className="modal-button">
+          <button className="modal-button">
             Сделать снимок
             <img src={cameraIcon} className="button-icon" alt="Camera" />
-          </Button>
-          <Button fullWidth variant="subtle" className="modal-button">
+          </button>
+          <button className="modal-button">
             Прикрепить файлы
             <img src={addFileIcon} className="button-icon" alt="Add File" />
-          </Button>
+          </button>
         </div>
       )}
-    </Box>
+    </footer>
   );
 };
 
