@@ -74,8 +74,8 @@ const Footer = ({ isNavClosed }) => {
 
   const handleTextareaResize = (event) => {
     const textarea = event.target;
-    textarea.style.height = "auto"; // Сбрасываем высоту для пересчёта
-    textarea.style.height = `${Math.min(textarea.scrollHeight, 190)}px`; // Устанавливаем высоту
+    textarea.style.height = "auto"; // Reset the height for recalculation
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 190)}px`; // Setting the height
   };
   
 
